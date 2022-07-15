@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/user").hasAnyAuthority("ROLE_USER")
-                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/*", "/login*", "/register*").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
