@@ -1,7 +1,7 @@
 package org.bozdgn.userservice.controller;
 
 import org.bozdgn.userservice.dto.UserInput;
-import org.bozdgn.userservice.model.User;
+import org.bozdgn.userservice.dto.UserOutput;
 import org.bozdgn.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +18,7 @@ public class UserAuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserInput userInput) {
-
-        User user = new User(null, userInput.getUsername(), userInput.getPassword(), userInput.getEmail());
-        userService.saveEntity(user);
-
+        UserOutput user = userService.save(userInput);
         return ResponseEntity.ok("User '" + user.getUsername() + "' saved");
     }
 }

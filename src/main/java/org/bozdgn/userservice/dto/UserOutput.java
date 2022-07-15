@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class UserOutput {
     String username;
     String email;
+    Boolean isAdmin;
+    String firstName;
+    String lastName;
+    String telephone;
 }

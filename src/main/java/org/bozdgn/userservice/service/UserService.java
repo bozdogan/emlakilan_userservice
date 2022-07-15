@@ -1,5 +1,6 @@
 package org.bozdgn.userservice.service;
 
+import org.bozdgn.userservice.dto.UserInput;
 import org.bozdgn.userservice.dto.UserOutput;
 import org.bozdgn.userservice.model.User;
 import org.bozdgn.userservice.repository.UserRepository;
@@ -37,7 +38,31 @@ public class UserService implements UserDetailsService {
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if (Boolean.TRUE.equals(user.getIsAdmin())) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
+
+    public UserOutput save(UserInput userInput) {
+        User user = saveEntity(new User(
+                null,
+                userInput.getUsername(),
+                userInput.getPassword(),
+                userInput.getEmail(),
+                userInput.getIsAdmin(),
+                userInput.getFirstName(),
+                userInput.getLastName(),
+                userInput.getTelephone()));
+
+        return new UserOutput(
+                user.getUsername(),
+                user.getEmail(),
+                user.getIsAdmin(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getTelephone());
     }
 
     public User saveEntity(User user) {
@@ -47,10 +72,32 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserOutput> getAll() {
-        return repository.findAll().stream().map(it -> new UserOutput(it.getUsername(), it.getEmail())).collect(Collectors.toList());
+        return repository.findAll().stream().map(
+                it -> new UserOutput(
+                        it.getUsername(),
+                        it.getEmail(),
+                        it.getIsAdmin(),
+                        it.getFirstName(),
+                        it.getLastName(),
+                        it.getTelephone())
+        ).collect(Collectors.toList());
     }
 
-    public User getByUsername(String username) {
-        return repository.findByUsername(username);
+    public UserOutput getByUsername(String username) {
+        User user = repository.findByUsername(username);
+        return new UserOutput(
+                user.getUsername(),
+                user.getEmail(),
+                user.getIsAdmin(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getTelephone());
+    }
+
+    public void deleteUserByUsername(String username) {
+        User user = repository.findByUsername(username);
+        if (user != null) {
+            repository.delete(user);
+        }
     }
 }
