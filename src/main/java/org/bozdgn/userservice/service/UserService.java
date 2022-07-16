@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
                 userInput.getUsername(),
                 userInput.getPassword(),
                 userInput.getEmail(),
-                userInput.getIsAdmin(),
+                Boolean.TRUE.equals(userInput.getIsAdmin()),
                 userInput.getFirstName(),
                 userInput.getLastName(),
                 userInput.getTelephone()));
@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
         return new UserOutput(
                 user.getUsername(),
                 user.getEmail(),
-                user.getIsAdmin(),
+                Boolean.TRUE.equals(user.getIsAdmin()),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getTelephone());
@@ -76,7 +76,7 @@ public class UserService implements UserDetailsService {
                 it -> new UserOutput(
                         it.getUsername(),
                         it.getEmail(),
-                        it.getIsAdmin(),
+                        Boolean.TRUE.equals(it.getIsAdmin()),
                         it.getFirstName(),
                         it.getLastName(),
                         it.getTelephone())
@@ -88,7 +88,7 @@ public class UserService implements UserDetailsService {
         return new UserOutput(
                 user.getUsername(),
                 user.getEmail(),
-                user.getIsAdmin(),
+                Boolean.TRUE.equals(user.getIsAdmin()),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getTelephone());
