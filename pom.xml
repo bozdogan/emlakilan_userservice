@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.bozdgn</groupId>
     <artifactId>userservice</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>userservice</name>
     <description>userservice</description>
     <properties>

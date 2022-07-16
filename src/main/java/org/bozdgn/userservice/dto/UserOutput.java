@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserOutput {
     String username;
     String email;
-    boolean isAdmin;
+    Boolean isAdmin;
     String firstName;
     String lastName;
     String telephone;

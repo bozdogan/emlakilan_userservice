@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        if (user.isAdmin()) {
+        if (Boolean.TRUE.equals(user.getIsAdmin())) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 
@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
                 userInput.getUsername(),
                 userInput.getPassword(),
                 userInput.getEmail(),
-                userInput.isAdmin(),
+                userInput.getIsAdmin(),
                 userInput.getFirstName(),
                 userInput.getLastName(),
                 userInput.getTelephone()));
@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
         return new UserOutput(
                 user.getUsername(),
                 user.getEmail(),
-                user.isAdmin(),
+                user.getIsAdmin(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getTelephone());
@@ -76,7 +76,7 @@ public class UserService implements UserDetailsService {
                 it -> new UserOutput(
                         it.getUsername(),
                         it.getEmail(),
-                        it.isAdmin(),
+                        it.getIsAdmin(),
                         it.getFirstName(),
                         it.getLastName(),
                         it.getTelephone())
@@ -88,7 +88,7 @@ public class UserService implements UserDetailsService {
         return new UserOutput(
                 user.getUsername(),
                 user.getEmail(),
-                user.isAdmin(),
+                user.getIsAdmin(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getTelephone());
