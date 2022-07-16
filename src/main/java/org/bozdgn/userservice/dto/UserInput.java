@@ -11,7 +11,7 @@ public class UserInput {
     String username;
     String password;
     String email;
-    Boolean isAdmin;
+    boolean isAdmin;
     String firstName;
     String lastName;
     String telephone;
