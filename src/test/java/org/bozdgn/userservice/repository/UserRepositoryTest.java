@@ -13,7 +13,7 @@ class UserRepositoryTest {
     private UserRepository underTest;
 
     @Test
-    void userIsSavedAndUsernameExists() {
+    void userIsShouldBeSavedAndUsernameShouldExists() {
         String username = "bjork";
         User testUser = new User(
                 null,
@@ -34,7 +34,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void userDoesNotExist() {
+    void userShouldNotExist() {
         String username = "haberturk";
 
         User retrievedUser = underTest.findByUsername(username);
